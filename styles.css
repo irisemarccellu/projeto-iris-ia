@@ -1,0 +1,45 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFFFFF;
+  color: #6B21A8;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  text-align: center;
+  padding: 2rem;
+}
+
+header {
+  background-color: #A855F7;
+  padding: 2rem 1rem;
+  color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+button {
+  background-color: #FDE8E4;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #6B21A8;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #A855F7;
+}
