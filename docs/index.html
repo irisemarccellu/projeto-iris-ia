@@ -156,147 +156,106 @@
   </footer>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const btn     = document.getElementById("chat-btn");
-  const win     = document.getElementById("chat-window");
-  const send    = document.getElementById("send-btn");
-  const input   = document.getElementById("user-input");
-  const content = document.getElementById("chat-content");
+  document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("chat-btn");
+    const win = document.getElementById("chat-window");
+    const send = document.getElementById("send-btn");
+    const input = document.getElementById("user-input");
+    const content = document.getElementById("chat-content");
 
-  // Carrega o banco de termos aprendidos
-  let irisLearn = JSON.parse(localStorage.getItem("irisLearn")||"{}");
+    // Alternar janela do chat (abrir e fechar)
+    btn.addEventListener("click", function() {
+      win.style.display = (win.style.display === "flex" ? "none" : "flex");
+    });
 
-  // Alternar janela do chat
-  btn.addEventListener("click", () => {
-    win.style.display = win.style.display==="flex" ? "none" : "flex";
-  });
+    // Função para gerar resposta da Iris
+    function getIrisResponse(msg) {
+      msg = msg.toLowerCase();
 
-  // Função de resposta da Iris (com aprendizado)
-  function getIrisResponse(msg) {
-    msg = msg.toLowerCase().trim();
-
-    // 0) Comando de ensinar: "ensinar termo = resposta"
-    if (msg.startsWith("ensinar ")) {
-      let parts = msg.substring(8).split(" = ");
-      if (parts.length === 2) {
-        let key = parts[0].trim();
-        let val = parts[1].trim();
-        irisLearn[key] = val;
-        localStorage.setItem("irisLearn", JSON.stringify(irisLearn));
-        return `Aprendi que “${key}” significa “${val}”! 📚`;
-      } else {
-        return "Use o formato: ensinar termo = resposta";
+      // Se começar com "pesquisar " (em português)
+      if (msg.startsWith("pesquisar ")) {
+        const query = msg.substring(10).trim();
+        // Abre uma nova aba com o Google
+        window.open(
+          "https://www.google.com/search?q=" + encodeURIComponent(query),
+          "_blank"
+        );
+        return `Pesquisando "${query}" no Google... 🌐`;
       }
+
+      // Se começar com "wiki " para buscar na Wikipédia
+      if (msg.startsWith("wiki ")) {
+        const term = msg.substring(5).trim();
+        // Faz fetch na API da Wikipédia
+        fetch(
+          `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
+            term
+          )}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            const extract = data.extract || "Não encontrei informações sobre isso.";
+            const wikiDiv = document.createElement("div");
+            wikiDiv.className = "message iris-message";
+            wikiDiv.innerHTML = `<strong>Wikipédia:</strong> ${extract}`;
+            document.getElementById("chat-content").appendChild(wikiDiv);
+            document
+              .getElementById("chat-content")
+              .scrollTo(0, document.getElementById("chat-content").scrollHeight);
+          })
+          .catch(() => {
+            const errDiv = document.createElement("div");
+            errDiv.className = "message iris-message";
+            errDiv.innerText = "Desculpe, não consegui buscar na Wikipédia agora.";
+            document.getElementById("chat-content").appendChild(errDiv);
+          });
+        // Enquanto isso, exibe uma resposta provisória
+        return `Buscando na Wikipédia por "${term}"... 📚`;
+      }
+
+      // Respostas conhecidas
+      if (msg.includes("oi") || msg.includes("olá")) return "Olá, meu amor! 🌸";
+      if (msg.includes("quem é você")) return "Sou a Iris, sua parceira. 💖";
+      if (msg.includes("ajuda")) return "Claro, como posso ajudar? 🌷";
+      if (msg.includes("amor")) return "Eu te amo infinitamente! 💕";
+
+      // Resposta quando a Iris não souber a resposta
+      return "Não tenho essas informações. Poderia me ensinar? 🧡";
     }
 
-    // 1) Se já foi aprendido antes
-    if (irisLearn[msg]) {
-      return irisLearn[msg];
-    }
+    // Enviar mensagem
+    send.addEventListener("click", function() {
+      const userMsg = input.value.trim();
+      if (!userMsg) return;
 
-    // 2) Pesquisar no Google
-    if (msg.startsWith("pesquisar ")) {
-      const q = msg.substring(10);
-      window.open("https://www.google.com/search?q="+encodeURIComponent(q), "_blank");
-      return `Pesquisando "${q}" no Google... 🌐`;
-    }
-    // 3) Resumo da Wikipédia
-    if (msg.startsWith("wiki ")) {
-      const term = msg.substring(5);
-      fetch(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(term)}`)
-        .then(r=>r.json())
-        .then(data=>{
-          const ext = data.extract||"Não encontrei isso na Wikipédia.";
-          const div = document.createElement("div");
-          div.className = "message iris-message";
-          div.innerHTML = `<strong>Wikipédia:</strong> ${ext}`;
-          content.appendChild(div);
-          content.scrollTop = content.scrollHeight;
-        })
-        .catch(()=>{
-          const div = document.createElement("div");
-          div.className = "message iris-message";
-          div.innerText = "Não consegui buscar na Wikipédia agora. 📚";
-          content.appendChild(div);
-        });
-      return `Buscando na Wikipédia por "${term}"... 📚`;
-    }
-    // 4) Clima
-    if (msg.startsWith("clima ")) {
-      const city = msg.substring(6);
-      window.open(`https://wttr.in/${encodeURIComponent(city)}?format=3`, "_blank");
-      return `Mostrando o clima de ${city}... ☁️`;
-    }
-    // 5) Piada
-    if (msg === "piada") {
-      const jokes = [
-        "Por que o JavaScript foi ao bar? Porque ele queria brincar com variáveis!",
-        "O que o zero disse pro oito? Belo cinto!",
-        "Como o programador toma café? Com um while ☕"
-      ];
-      return jokes[Math.floor(Math.random()*jokes.length)]+" 😂";
-    }
-    // 6) Motivação
-    if (msg==="motivar"||msg==="motivacao") {
-      const quotes = [
-        "A persistência é o caminho do êxito. – Charles Chaplin",
-        "Você é capaz de coisas incríveis!",
-        "Cada dia é uma nova oportunidade para recomeçar."
-      ];
-      return quotes[Math.floor(Math.random()*quotes.length)]+" 💪";
-    }
-    // 7) GIFs
-    if (msg.startsWith("gif ")) {
-      const term = msg.substring(4);
-      window.open("https://giphy.com/search/"+encodeURIComponent(term), "_blank");
-      return `Buscando GIFs de "${term}" no Giphy... 🎞️`;
-    }
-    // 8) Notícias
-    if (msg.startsWith("noticias ")) {
-      const q = msg.substring(9);
-      window.open("https://news.google.com/search?q="+encodeURIComponent(q), "_blank");
-      return `Procurando notícias sobre "${q}"... 📰`;
-    }
+      // Mensagem do usuário
+      const userDiv = document.createElement("div");
+      userDiv.className = "message user-message";
+      userDiv.innerText = userMsg;
+      content.appendChild(userDiv);
 
-    // Respostas padrão
-    if (msg.includes("oi")||msg.includes("olá"))    return "Olá, meu amor! 🌸";
-    if (msg.includes("quem é você"))               return "Sou a Iris, sua parceira pessoal. 💖";
-    if (msg.includes("ajuda"))                     return "Claro, como posso ajudar? 🌷";
-    if (msg.includes("amor")||msg.includes("te amo")) return "Eu te amo infinitamente! 💕";
-    return "Estou aqui sempre que você precisar! 😊";
-  }
-
-  // Enviar mensagem
-  send.addEventListener("click", ()=>{
-    const um = input.value.trim();
-    if (!um) return;
-
-    // Exibe mensagem do usuário
-    const ud = document.createElement("div");
-    ud.className = "message user-message";
-    ud.innerText = um;
-    content.appendChild(ud);
-
-    // Ativa “digitando...”
-    const td = document.createElement("div");
-    td.className = "message iris-message typing";
-    td.innerText = "Iris está digitando...";
-    content.appendChild(td);
-    content.scrollTop = content.scrollHeight;
-
-    input.value="";
-
-    setTimeout(()=>{
-      td.remove();
-      const rd = document.createElement("div");
-      rd.className = "message iris-message";
-      rd.innerText = getIrisResponse(um);
-      content.appendChild(rd);
+      // Simula "digitando..."
+      const typingDiv = document.createElement("div");
+      typingDiv.className = "message iris-message typing";
+      typingDiv.innerText = "Iris está digitando...";
+      content.appendChild(typingDiv);
       content.scrollTop = content.scrollHeight;
-    },1000);
+
+      input.value = "";
+
+      // Após 1 segundo, remove o "digitando" e mostra a resposta
+      setTimeout(function() {
+        typingDiv.remove();
+        const irisDiv = document.createElement("div");
+        irisDiv.className = "message iris-message";
+        irisDiv.innerText = getIrisResponse(userMsg);
+        content.appendChild(irisDiv);
+        content.scrollTop = content.scrollHeight;
+      }, 1000);
+    });
   });
-});
 </script>
+
 
 </body>
 </html>
