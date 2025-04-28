@@ -172,8 +172,8 @@
 function getIrisResponse(msg) {
   msg = msg.toLowerCase().trim();
 
-  // Se começar com "pesquisa "
-  if (msg.startsWith("pesquisa ")) {
+  // Se começar com "pesquisar "
+  if (msg.startsWith("pesquisar ")) {
     const query = msg.substring(10).trim();
     window.open(
       "https://www.google.com/search?q=" + encodeURIComponent(query),
@@ -215,7 +215,7 @@ function getIrisResponse(msg) {
   if (msg.includes("amor") || msg.includes("te amo")) return "Eu te amo infinitamente! 💕";
 
   // Se não souber, pede pra ensinar
-  return 'Ainda estou em desenvolvimento. Digite "pesquisa " e juntos vamos aprender 🧡';
+  return 'Ainda estou em desenvolvimento. Digite "pesquisar internet" e juntos vamos aprender 🧡';
 }
 
 
