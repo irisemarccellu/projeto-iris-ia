@@ -1,11 +1,11 @@
-/* Remove bolinhas e espaçamentos padrão de todas as listas */
+/* Reset de listas e margem/padding */
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Deixa cada seção com fundo branco, bordas arredondadas e sombra suave */
+/* Estilo geral das seções */
 section {
   margin: 20px 0;
   padding: 20px;
@@ -14,8 +14,7 @@ section {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Destaca os títulos das seções */
+/* Destaque para títulos */
 h2 {
   color: #2a9d8f;
 }
-
