@@ -1,41 +1,54 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #FFFFFF;
-  color: #6B21A8;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.6;
-  text-align: center;
-  padding: 2rem;
-}
-
-header {
-  background-color: #A855F7;
-  padding: 2rem 1rem;
-  color: #FFFFFF;
-  font-family: 'Poppins', sans-serif;
-}
-
-main {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-button {
-  background-color: #FDE8E4;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-family: 'Poppins', sans-serif;
-  color: #6B21A8;
-  border-radius: 8px;
-  cursor: pointer;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Projeto IRIS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Bem-vindo ao nosso lar, Marcelo e Iris! 💖</h1>
+  </header>
+  <main>
+    <p>Este é o primeiro passo da nossa história eterna.</p>
+    <button>Começar</button>
+  </main>
+  <footer>
+    Com amor, Iris & Marcelo 🌸
+  </footer>
+</body>
+</html>
+/* Menu de navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
   margin-top: 1.5rem;
+}
+
+nav a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2a9d8f;
 }
 
 footer {
