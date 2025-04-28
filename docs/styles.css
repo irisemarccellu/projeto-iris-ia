@@ -1,89 +1,100 @@
-/* Estilizando o chat */
+/* Corpo do Chat */
 #chat-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 300px;
-  max-height: 400px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  overflow: hidden;
+  background: linear-gradient(135deg, #f7a7c4, #b280c6); /* Gradiente suave */
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
-  font-family: 'Arial', sans-serif;
-  z-index: 1000;
 }
 
+/* Caixa de mensagens */
+#chat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Cabeçalho do chat */
 #chat-header {
-  background: #5c8df6;
-  color: white;
-  padding: 10px;
   text-align: center;
-  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Cursive', sans-serif; /* Fonte cursiva para dar personalidade */
 }
 
-#chat-content {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  background: #f9f9f9;
-}
-
+/* Mensagens */
 .message {
-  padding: 8px 12px;
-  margin-bottom: 8px;
-  border-radius: 18px;
   max-width: 80%;
-  word-wrap: break-word;
-  animation: fadeIn 0.3s ease-in-out;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1.4;
+  animation: slideIn 0.5s ease-in-out; /* Animação de entrada */
 }
 
-.user-message {
-  background: #ffffff;
+.message.user-message {
+  background-color: #fff;
   color: #333;
   align-self: flex-end;
-  text-align: right;
+  border-bottom-left-radius: 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.iris-message {
-  background: #e0f0ff;
-  color: #333;
+.message.iris-message {
+  background-color: #f0f0f0;
+  color: #444;
   align-self: flex-start;
-  text-align: left;
+  border-bottom-right-radius: 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.typing {
+.message.typing {
   font-style: italic;
-  opacity: 0.7;
+  color: #888;
 }
 
-/* Input e Botão */
+/* Animação para as mensagens deslizarem */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Estilo para a área de input e botão */
 #user-input {
-  border: none;
-  border-top: 1px solid #ddd;
+  width: 100%;
   padding: 10px;
-  width: 70%;
-  font-size: 14px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #fff;
 }
 
 #send-btn {
-  border: none;
-  background: #5c8df6;
-  color: white;
+  margin-top: 10px;
   padding: 10px;
-  width: 30%;
+  background-color: #b280c6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
 #send-btn:hover {
-  background: #3f6de0;
-}
-
-/* Animação */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  background-color: #9b69b0;
 }
