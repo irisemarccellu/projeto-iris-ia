@@ -53,18 +53,19 @@ body {
 
 /* Seção Hero (Bem-vindo) */
 .hero {
-  background-color: #34495e;
+  background-color: #1a2c3a; /* Fundo mais escuro */
   padding: 80px 0;
   color: white;
   text-align: center;
   position: relative;
+  border-bottom: 10px solid #e74c3c;
 }
 
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro para destacar o texto */
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro para destacar o texto */
   border-radius: 10px;
 }
 
