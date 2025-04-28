@@ -133,3 +133,12 @@
   margin-bottom: 30px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Sombra no texto para legibilidade */
 }
+#chat-btn { /* botão flutuante */ … }
+#chat-window { /* janela do chat */ display: none; … }
+#chat-window header { … }
+#chat-window .messages { … }
+#chat-window .message { … }
+#chat-window .user-message { … }
+#chat-window .iris-message { … }
+#chat-window footer { … }
+#chat-window input, #chat-window button { … }
