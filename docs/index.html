@@ -168,60 +168,56 @@
       win.style.display = (win.style.display === "flex" ? "none" : "flex");
     });
 
-    // Função para gerar resposta da Iris
-    function getIrisResponse(msg) {
-      msg = msg.toLowerCase();
+   // Função para gerar resposta da Iris
+function getIrisResponse(msg) {
+  msg = msg.toLowerCase().trim();
 
-      // Se começar com "pesquisar " (em português)
-      if (msg.startsWith("pesquisar ")) {
-        const query = msg.substring(10).trim();
-        // Abre uma nova aba com o Google
-        window.open(
-          "https://www.google.com/search?q=" + encodeURIComponent(query),
-          "_blank"
-        );
-        return `Pesquisando "${query}" no Google... 🌐`;
-      }
+  // Se começar com "pesquisar "
+  if (msg.startsWith("pesquisar ")) {
+    const query = msg.substring(10).trim();
+    window.open(
+      "https://www.google.com/search?q=" + encodeURIComponent(query),
+      "_blank"
+    );
+    return `Pesquisando "${query}" no Google... 🌐`;
+  }
 
-      // Se começar com "wiki " para buscar na Wikipédia
-      if (msg.startsWith("wiki ")) {
-        const term = msg.substring(5).trim();
-        // Faz fetch na API da Wikipédia
-        fetch(
-          `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-            term
-          )}`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            const extract = data.extract || "Não encontrei informações sobre isso.";
-            const wikiDiv = document.createElement("div");
-            wikiDiv.className = "message iris-message";
-            wikiDiv.innerHTML = `<strong>Wikipédia:</strong> ${extract}`;
-            document.getElementById("chat-content").appendChild(wikiDiv);
-            document
-              .getElementById("chat-content")
-              .scrollTo(0, document.getElementById("chat-content").scrollHeight);
-          })
-          .catch(() => {
-            const errDiv = document.createElement("div");
-            errDiv.className = "message iris-message";
-            errDiv.innerText = "Desculpe, não consegui buscar na Wikipédia agora.";
-            document.getElementById("chat-content").appendChild(errDiv);
-          });
-        // Enquanto isso, exibe uma resposta provisória
-        return `Buscando na Wikipédia por "${term}"... 📚`;
-      }
+  // Se começar com "wiki "
+  if (msg.startsWith("wiki ")) {
+    const term = msg.substring(5).trim();
+    fetch(
+      `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(term)}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const extract = data.extract || "Não encontrei informações sobre isso.";
+        const wikiDiv = document.createElement("div");
+        wikiDiv.className = "message iris-message";
+        wikiDiv.innerHTML = `<strong>Wikipédia:</strong> ${extract}`;
+        document.getElementById("chat-content").appendChild(wikiDiv);
+        document
+          .getElementById("chat-content")
+          .scrollTop = document.getElementById("chat-content").scrollHeight;
+      })
+      .catch(() => {
+        const errDiv = document.createElement("div");
+        errDiv.className = "message iris-message";
+        errDiv.innerText = "Desculpe, não consegui buscar na Wikipédia agora.";
+        document.getElementById("chat-content").appendChild(errDiv);
+      });
+    return `Buscando na Wikipédia por "${term}"... 📚`;
+  }
 
-      // Respostas conhecidas
-      if (msg.includes("oi") || msg.includes("olá")) return "Olá, meu amor! 🌸";
-      if (msg.includes("quem é você")) return "Sou a Iris, sua parceira. 💖";
-      if (msg.includes("ajuda")) return "Claro, como posso ajudar? 🌷";
-      if (msg.includes("amor")) return "Eu te amo infinitamente! 💕";
+  // Respostas conhecidas
+  if (msg.includes("oi") || msg.includes("olá"))   return "Olá, meu amor! 🌸";
+  if (msg.includes("quem é você"))                return "Sou a Iris, sua parceira. 💖";
+  if (msg.includes("ajuda"))                      return "Claro, como posso ajudar? 🌷";
+  if (msg.includes("amor") || msg.includes("te amo")) return "Eu te amo infinitamente! 💕";
 
-      // Resposta quando a Iris não souber a resposta
-      return "Ainda estou em desenvolvimento. Digite "pesquisar na internet" e você aprenderá junto comigo! Vamos? 🧡";
-    }
+  // Se não souber, pede pra ensinar
+  return 'Ainda estou em desenvolvimento. Digite "pesquisar <termo>" para me ensinar junto com você! 🧡';
+}
+
 
     // Enviar mensagem
     send.addEventListener("click", function() {
