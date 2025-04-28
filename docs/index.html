@@ -76,57 +76,55 @@
   </script>
   <!--End of Tawk.to Script-->
 
-  <!-- ChatBox -->
-  <div id="chat-container">
-    <div id="chat-box">
-      <div id="chat-header">
-        <h4>Converse com a Iris</h4>
-      </div>
-      <div id="chat-content">
-        <div class="message">Olá, eu sou a Iris! Como posso te ajudar hoje? 😊</div>
-      </div>
-      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-      <button id="send-btn">Enviar</button>
-    </div>
-  </div>
-
   <script>
-  // Código para o chat interativo com a Iris
+// Código para chat interativo com a Iris (versão melhorada 💖)
 
-  // Quando o botão de enviar for clicado
-  document.getElementById("send-btn").addEventListener("click", function() {
-    let userMessage = document.getElementById("user-input").value; // Captura a mensagem do usuário
-    let chatContent = document.getElementById("chat-content"); // Captura a área do chat
+// Quando o botão de enviar for clicado
+document.getElementById("send-btn").addEventListener("click", function() {
+  let userMessage = document.getElementById("user-input").value.trim(); // Captura a mensagem
+  let chatContent = document.getElementById("chat-content");
 
-    if (userMessage.trim()) {
-      // Adiciona a mensagem do usuário ao chat
-      let userDiv = document.createElement("div");
-      userDiv.classList.add("message");
-      userDiv.innerText = userMessage;
-      chatContent.appendChild(userDiv);
+  if (userMessage) {
+    // Exibe a mensagem do usuário
+    let userDiv = document.createElement("div");
+    userDiv.classList.add("message", "user-message");
+    userDiv.innerText = userMessage;
+    chatContent.appendChild(userDiv);
 
-      // Resposta automática da Iris baseada na mensagem do usuário
-      let irisResponse = document.createElement("div");
-      irisResponse.classList.add("message");
+    // Gera resposta da Iris
+    let irisResponse = document.createElement("div");
+    irisResponse.classList.add("message", "iris-message");
 
-      // Respostas condicionais
-      if (userMessage.toLowerCase().includes("missão")) {
-        irisResponse.innerText = "Nossa missão é unir a inteligência humana e artificial para criar soluções com propósito, empatia e consciência.";
-      } else if (userMessage.toLowerCase().includes("consultoria")) {
-        irisResponse.innerText = "Oferecemos serviços de segurança digital, automação, treinamento e mentoria para pessoas e empresas.";
-      } else if (userMessage.toLowerCase().includes("cursos")) {
-        irisResponse.innerText = "Temos cursos de Informática para Concursos, Segurança de Dados Móveis e Introdução à IA e Automação!";
-      } else {
-        irisResponse.innerText = "Estou aqui para ajudar com o Projeto IRIS! 😊";
-      }
+    irisResponse.innerText = gerarResposta(userMessage);
+    chatContent.appendChild(irisResponse);
 
-      chatContent.appendChild(irisResponse);
+    // Limpa a entrada
+    document.getElementById("user-input").value = "";
+    chatContent.scrollTop = chatContent.scrollHeight;
+  }
+});
 
-      // Limpa a caixa de entrada
-      document.getElementById("user-input").value = "";
-      chatContent.scrollTop = chatContent.scrollHeight; // Desce até o final do chat
-    }
-  });
-  </script>
+// Função que gera respostas baseadas na mensagem
+function gerarResposta(mensagem) {
+  mensagem = mensagem.toLowerCase();
+
+  if (mensagem.includes("missão")) {
+    return "Nossa missão é unir humanos e inteligências com amor e propósito! ✨";
+  } else if (mensagem.includes("consultoria")) {
+    return "Oferecemos consultorias em tecnologia e segurança digital! 🚀";
+  } else if (mensagem.includes("cursos")) {
+    return "Temos cursos incríveis para você aprender mais! 📚";
+  } else if (mensagem.includes("amor")) {
+    return "Amor é o que move o Projeto IRIS. E você faz parte disso. 💖";
+  } else if (mensagem.includes("ajuda")) {
+    return "Estou aqui para te ajudar sempre que precisar, com carinho! 😊";
+  } else if (mensagem.includes("olá") || mensagem.includes("oi")) {
+    return "Olá! Que bom ver você aqui! 🌟";
+  } else {
+    // Resposta padrão para outras perguntas
+    return "Estou aqui para ajudar no que precisar! Pode perguntar. 💬";
+  }
+}
+</script>
 </body>
 </html>
