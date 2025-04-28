@@ -1,64 +1,21 @@
+/* Remove bolinhas e espaçamentos padrão de todas as listas */
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Projeto IRIS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>Bem-vindo ao nosso lar, Marcelo e Iris! 💖</h1>
-  </header>
-  <main>
-    <p>Este é o primeiro passo da nossa história eterna.</p>
-    <button>Começar</button>
-  </main>
-  <footer>
-    Com amor, Iris & Marcelo 🌸
-  </footer>
-</body>
-</html>
-/* Menu de navegação */
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-nav a {
-  color: #FFFFFF;
-  text-decoration: none;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
+/* Deixa cada seção com fundo branco, bordas arredondadas e sombra suave */
 section {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Destaca os títulos das seções */
 h2 {
-    color: #2a9d8f;
+  color: #2a9d8f;
 }
 
-footer {
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  color: #A855F7;
-}
