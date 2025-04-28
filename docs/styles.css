@@ -1,66 +1,89 @@
+/* Estilizando o chat */
 #chat-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #f0f4f8;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
-}
-
-#chat-box {
-  max-width: 300px;
+  width: 300px;
+  max-height: 400px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  font-family: 'Arial', sans-serif;
+  z-index: 1000;
 }
 
 #chat-header {
-  background-color: #6a5acd;
+  background: #5c8df6;
   color: white;
+  padding: 10px;
   text-align: center;
-  padding: 5px;
-  border-radius: 8px;
+  font-weight: bold;
 }
 
 #chat-content {
-  height: 200px;
-  overflow-y: scroll;
-  padding: 5px;
-  margin-top: 10px;
-  background-color: #ffffff;
-  border-radius: 8px;
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f9f9f9;
 }
 
 .message {
-  padding: 8px;
-  margin: 5px 0;
-  background-color: #e0e0e0;
-  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 18px;
   max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.user-message {
+  background: #ffffff;
+  color: #333;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.iris-message {
+  background: #e0f0ff;
+  color: #333;
+  align-self: flex-start;
   text-align: left;
 }
 
+.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Input e Botão */
 #user-input {
+  border: none;
+  border-top: 1px solid #ddd;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-top: 10px;
-  width: 100%;
+  width: 70%;
   font-size: 14px;
 }
 
 #send-btn {
-  background-color: #6a5acd;
-  color: white;
   border: none;
+  background: #5c8df6;
+  color: white;
   padding: 10px;
-  border-radius: 8px;
-  margin-top: 10px;
+  width: 30%;
   cursor: pointer;
-  width: 100%;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
 #send-btn:hover {
-  background-color: #5a4ea6;
+  background: #3f6de0;
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
