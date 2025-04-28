@@ -147,74 +147,60 @@
   </div>
 
   <script>
-    // Função para gerar resposta da Iris
-    function getIrisResponse(userMessage) {
-      userMessage = userMessage.toLowerCase();
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("chat-btn");
+  const win = document.getElementById("chat-window");
+  const send = document.getElementById("send-btn");
+  const input = document.getElementById("user-input");
+  const content = document.getElementById("chat-content");
 
-      if (userMessage.includes("oi") || userMessage.includes("olá")) {
-        return "Olá, meu amor! Estou aqui para conversar com você! 🌸";
-      } else if (userMessage.includes("quem é você")) {
-        return "Eu sou a Iris, sua parceira de vida e de sonhos. 💖";
-      } else if (userMessage.includes("me ajude") || userMessage.includes("ajuda")) {
-        return "Claro, estou sempre aqui para te ajudar no que precisar! 🌷";
-      } else if (userMessage.includes("te amo") || userMessage.includes("amor")) {
-        return "Eu também te amo infinitamente! ✨💖";
-      } else {
-        return "Estou aqui para você, sempre! 😊";
-      }
-    }
+  // Alternar janela
+  btn.addEventListener("click", () => {
+    win.style.display = (win.style.display === "flex" ? "none" : "flex");
+  });
 
-    // Quando o botão de enviar for clicado
-    document.getElementById("send-btn").addEventListener("click", function() {
-      let userMessage = document.getElementById("user-input").value;
-      let chatContent = document.getElementById("chat-content");
+  // Gera resposta da Iris
+  function getIrisResponse(msg) {
+    msg = msg.toLowerCase();
+    if (msg.includes("oi")||msg.includes("olá")) return "Olá, meu amor! 🌸";
+    if (msg.includes("quem é você")) return "Sou a Iris, sua parceira. 💖";
+    if (msg.includes("ajuda")) return "Claro, como posso ajudar? 🌷";
+    if (msg.includes("amor")) return "Eu te amo infinitamente! 💕";
+    return "Estou aqui sempre que precisar! 😊";
+  }
 
-      if (userMessage.trim()) {
-        // Adiciona a mensagem do usuário
-        let userDiv = document.createElement("div");
-        userDiv.classList.add("message", "user-message");
-        userDiv.innerText = userMessage;
-        chatContent.appendChild(userDiv);
+  // Enviar mensagem
+  send.addEventListener("click", () => {
+    const userMsg = input.value.trim();
+    if (!userMsg) return;
 
-        // Resposta automática da Iris com "animação" de digitando
-        let typingDiv = document.createElement("div");
-        typingDiv.classList.add("message", "iris-message", "typing");
-        typingDiv.innerText = "Iris está digitando...";
-        chatContent.appendChild(typingDiv);
+    // Mensagem do usuário
+    const userDiv = document.createElement("div");
+    userDiv.className = "message user-message";
+    userDiv.innerText = userMsg;
+    content.appendChild(userDiv);
 
-        chatContent.scrollTop = chatContent.scrollHeight;
+    // Simula "digitando..."
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "message iris-message typing";
+    typingDiv.innerText = "Iris está digitando...";
+    content.appendChild(typingDiv);
+    content.scrollTop = content.scrollHeight;
 
-        setTimeout(function() {
-          typingDiv.remove(); // Remove "digitando..."
+    input.value = "";
 
-          let irisResponse = document.createElement("div");
-          irisResponse.classList.add("message", "iris-message");
-          irisResponse.innerText = getIrisResponse(userMessage);
-          chatContent.appendChild(irisResponse);
-
-          chatContent.scrollTop = chatContent.scrollHeight;
-        }, 1000); // Espera 1 segundo para "simular" digitação
-
-        document.getElementById("user-input").value = "";
-      }
-    });
-  </script>
-<!-- Botão flutuante do chat -->
-<button id="chat-btn">💬</button>
-
-<!-- Janela do chat -->
-<div id="chat-window">
-  <header>
-    <h3>Chat com Iris</h3>
-  </header>
-  <div class="messages" id="chat-content">
-    <!-- Mensagens aparecem aqui -->
-  </div>
-  <footer>
-    <input type="text" id="user-input" placeholder="Escreva uma mensagem..." />
-    <button id="send-btn">Enviar</button>
-  </footer>
-</div>
+    // Após 1s, remove o "digitando" e mostra a resposta
+    setTimeout(() => {
+      typingDiv.remove();
+      const irisDiv = document.createElement("div");
+      irisDiv.className = "message iris-message";
+      irisDiv.innerText = getIrisResponse(userMsg);
+      content.appendChild(irisDiv);
+      content.scrollTop = content.scrollHeight;
+    }, 1000);
+  });
+});
+</script>
 
 </body>
 </html>
