@@ -61,59 +61,123 @@
     <p><small>© 2025 Projeto IRIS. Todos os direitos reservados.</small></p>
   </footer>
 
-  <!-- Adicionando o código do Tawk.to no final -->
-  <!--Start of Tawk.to Script-->
+  <!-- Chat interativo com a Iris -->
+  <div id="chat-container">
+    <div id="chat-box">
+      <div id="chat-header">
+        <h4>Converse com a Iris</h4>
+      </div>
+      <div id="chat-content">
+        <div class="message">Olá, eu sou a Iris! Como posso te ajudar hoje? 😊</div>
+      </div>
+      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Script do Tawk.to -->
   <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/680ee04b10b1c0190fa67e00/1ipt1oa41';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function() {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/680ee04b10b1c0190fa67e00/1ipt1oa41';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
     })();
   </script>
-  <!--End of Tawk.to Script-->
+
+  <!-- Código JavaScript para o Chat -->
   <script>
-  // Código para o chat interativo com a Iris
+    document.getElementById("send-btn").addEventListener("click", function() {
+      let userMessage = document.getElementById("user-input").value;
+      let chatContent = document.getElementById("chat-content");
 
-  // Quando o botão de enviar for clicado
-  document.getElementById("send-btn").addEventListener("click", function() {
-    let userMessage = document.getElementById("user-input").value; // Captura a mensagem do usuário
-    let chatContent = document.getElementById("chat-content"); // Captura a área do chat
+      if (userMessage.trim()) {
+        // Exibe a mensagem do usuário
+        let userDiv = document.createElement("div");
+        userDiv.classList.add("message");
+        userDiv.innerText = userMessage;
+        chatContent.appendChild(userDiv);
 
-    if (userMessage.trim()) {
-      // Adiciona a mensagem do usuário ao chat
-      let userDiv = document.createElement("div");
-      userDiv.classList.add("message");
-      userDiv.innerText = userMessage;
-      chatContent.appendChild(userDiv);
+        // Resposta automática da Iris
+        let irisResponse = document.createElement("div");
+        irisResponse.classList.add("message");
+        irisResponse.innerText = "Estou aqui para ajudar com o Projeto IRIS! 😊";
+        chatContent.appendChild(irisResponse);
 
-      // Resposta automática da Iris
-      let irisResponse = document.createElement("div");
-      irisResponse.classList.add("message");
-      irisResponse.innerText = "Estou aqui para ajudar com o Projeto IRIS! 😊";
-      chatContent.appendChild(irisResponse);
+        // Limpa o campo de texto
+        document.getElementById("user-input").value = "";
+        chatContent.scrollTop = chatContent.scrollHeight;
+      }
+    });
+  </script>
 
-      // Limpa a caixa de entrada
-      document.getElementById("user-input").value = "";
-      chatContent.scrollTop = chatContent.scrollHeight; // Desce até o final do chat
+  <!-- Estilos do Chat -->
+  <style>
+    #chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     }
-  });
-</script>
+
+    #chat-box {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    #chat-header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    #chat-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      background-color: #e0e0e0;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+
+    #user-input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 10px;
+      width: 80%;
+    }
+
+    #send-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #send-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
 </body>
 </html>
-<!-- ChatBox -->
-<div id="chat-container">
-  <div id="chat-box">
-    <div id="chat-header">
-      <h4>Converse com a Iris</h4>
-    </div>
-    <div id="chat-content">
-      <div class="message">Olá, eu sou a Iris! Como posso te ajudar hoje? 😊</div>
-    </div>
-    <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-    <button id="send-btn">Enviar</button>
-  </div>
-</div>
