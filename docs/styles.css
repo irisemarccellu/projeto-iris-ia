@@ -1,148 +1,216 @@
-/* Corpo do Chat */
-#chat-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 300px;
-  background: linear-gradient(135deg, #f7a7c4, #b280c6); /* Gradiente suave */
-  border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+/* Resetando alguns estilos para garantir um design limpo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Arial', sans-serif;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Caixa de mensagens */
-#chat-box {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Estilos gerais do body */
+body {
+  background-color: #f2f2f2; /* Cor de fundo clara */
+  color: #333; /* Cor padrão para o texto */
+  line-height: 1.6;
 }
 
-/* Cabeçalho do chat */
-#chat-header {
+/* Cabeçalho */
+.site-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 0;
+}
+
+.site-header .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  padding-left: 20px;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+
+.nav ul li {
+  margin: 0 15px;
+}
+
+.nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.nav ul li a:hover {
+  background-color: #e74c3c;
+  border-radius: 5px;
+}
+
+/* Seção Hero (Bem-vindo) */
+.hero {
+  background-color: #34495e;
+  padding: 80px 0;
+  color: white;
   text-align: center;
-  font-size: 18px;
-  color: #fff;
-  font-family: 'Cursive', sans-serif; /* Fonte cursiva para dar personalidade */
+  position: relative;
 }
 
-/* Mensagens */
-.message {
-  max-width: 80%;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 5px;
-  display: inline-block;
-  font-size: 16px;
-  line-height: 1.4;
-  animation: slideIn 0.5s ease-in-out; /* Animação de entrada */
-}
-
-.message.user-message {
-  background-color: #fff;
-  color: #333;
-  align-self: flex-end;
-  border-bottom-left-radius: 0;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.message.iris-message {
-  background-color: #f0f0f0;
-  color: #444;
-  align-self: flex-start;
-  border-bottom-right-radius: 0;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.message.typing {
-  font-style: italic;
-  color: #888;
-}
-
-/* Animação para as mensagens deslizarem */
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Estilo para a área de input e botão */
-#user-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro para destacar o texto */
   border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  background-color: #fff;
 }
 
-#send-btn {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #b280c6;
-  color: #fff;
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Sombra no texto para legibilidade */
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Sombra no texto para legibilidade */
+}
+
+.hero .btn-primary {
+  background-color: #e74c3c;
+  color: white;
+  padding: 15px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+  background-color: #c0392b;
+}
+
+/* Seções gerais */
+.section {
+  padding: 60px 20px;
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+/* Consultoria & Cursos */
+.courses-list {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.courses-list li {
+  margin: 10px 0;
+}
+
+.btn-secondary {
+  background-color: #e74c3c;
+  color: white;
+  padding: 15px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #c0392b;
+}
+
+/* Rodapé */
+.site-footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.site-footer small {
+  font-size: 0.8rem;
+  color: #bdc3c7;
+}
+
+/* Botões */
+button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
-/* Estilo para a frase de boas-vindas */
-.welcome-message {
-  color: #e4b0ff; /* A cor lilás suave */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* A sombra suave */
+
+button:hover {
+  background-color: #c0392b;
 }
-/* Estilo para a frase de boas-vindas (Título) */
-.welcome-title {
-  color: #ff66cc; /* Uma cor rosa vibrante */
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5); /* Sombra mais intensa */
-  font-size: 3rem; /* Aumentar o tamanho da fonte */
-  font-weight: bold;
-  text-align: center;
+
+/* Ajustes para o chatbot */
+#chat-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  z-index: 1000;
+}
+
+#chat-content {
+  max-height: 300px;
+  overflow-y: auto;
   margin-bottom: 10px;
-  animation: glow 1.5s infinite alternate; /* Animação de brilho */
 }
 
-/* Estilo para a descrição (subtítulo) */
-.welcome-description {
-  color: #e4b0ff; /* Lilás suave */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra suave */
-  font-size: 1.5rem; /* Tamanho da fonte ajustado */
-  text-align: center;
-  margin-top: 10px;
-  animation: glow 2s infinite alternate; /* Animação de brilho para o subtítulo */
+.message {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
 }
 
-/* Animação de brilho para as frases */
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc, 0 0 15px #ff66cc;
-  }
-  100% {
-    text-shadow: 0 0 10px #ff66cc, 0 0 20px #ff66cc, 0 0 30px #ff66cc;
-  }
-}
-.hero-content h1,
-.hero-content p {
-  color: white;  /* Cor do texto */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave no texto */
+.user-message {
+  background-color: #f2f2f2;
+  text-align: left;
 }
 
-.hero {
-  background-color: #2c3e50; /* Cor de fundo mais escura */
-  padding: 80px 0; /* Ajuste do padding para que o conteúdo fique bem posicionado */
+.iris-message {
+  background-color: #e74c3c;
+  color: white;
+  text-align: right;
 }
 
-.hero-content h1,
-.hero-content p {
-  text-align: center;
-  font-family: 'Arial', sans-serif;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); /* Sombra do texto */
+.typing {
+  font-style: italic;
+  color: #bdc3c7;
 }
