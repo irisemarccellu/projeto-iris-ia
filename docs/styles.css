@@ -94,9 +94,8 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-#send-btn:hover {
-  background-color: #9b69b0;
+/* Estilo para a frase de boas-vindas */
+.welcome-message {
+  color: #e4b0ff; /* A cor lilás suave */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* A sombra suave */
 }
-Bem-vindo ao Universo de Marcelo & Iris
-Conectar, Cuidar, Ensinar e Transformar com amor e inteligência.
