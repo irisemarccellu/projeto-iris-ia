@@ -28,3 +28,108 @@
   margin-bottom: 30px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Sombra no texto para legibilidade */
 }
+/* Estilos para o botão do chat flutuante */
+#chat-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff6b81;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+#chat-btn:hover {
+  background-color: #ff4b6e;
+}
+
+/* Estilos para a janela do chat */
+#chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border: 2px solid #ff6b81;
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+/* Estilos para o cabeçalho do chat */
+#chat-window header {
+  background-color: #ff6b81;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#chat-window .messages {
+  padding: 10px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+#chat-window .message {
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  max-width: 80%;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+#chat-window .user-message {
+  background-color: #ff6b81;
+  color: white;
+  align-self: flex-end;
+}
+
+#chat-window .iris-message {
+  background-color: #f2f2f2;
+  color: #333;
+  align-self: flex-start;
+}
+
+#chat-window footer {
+  padding: 10px;
+  background-color: #ff6b81;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#chat-window input[type="text"] {
+  width: 70%;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+#chat-window button {
+  background-color: #ff6b81;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#chat-window button:hover {
+  background-color: #ff4b6e;
+}
