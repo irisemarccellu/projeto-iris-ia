@@ -1,120 +1,66 @@
-/* Reset de margens e paddings */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+#chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f0f4f8;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
 }
 
-/* Body */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-/* Cabeçalho */
-.site-header {
-  background: #333;
-  color: #fff;
-  padding: 1rem 0;
-}
-
-.nav {
+#chat-box {
+  max-width: 300px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
-}
-
-.menu {
-  list-style: none;
-}
-
-.menu li {
-  display: inline;
-  margin-right: 20px;
-}
-
-.menu li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-
-/* Seção Hero */
-.hero {
-  background: #1d1d1d;
-  color: #fff;
-  padding: 6rem 2rem;
+#chat-header {
+  background-color: #6a5acd;
+  color: white;
   text-align: center;
+  padding: 5px;
+  border-radius: 8px;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+#chat-content {
+  height: 200px;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+.message {
+  padding: 8px;
+  margin: 5px 0;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  max-width: 80%;
+  text-align: left;
 }
 
-.btn-primary {
-  background-color: #ff3366;
-  padding: 0.8rem 2rem;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
+#user-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 14px;
 }
 
-.btn-primary:hover {
-  background-color: #d92c57;
+#send-btn {
+  background-color: #6a5acd;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 100%;
 }
 
-/* Seções */
-.section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.courses-list {
-  list-style: none;
-  margin-top: 1rem;
-}
-
-.courses-list li {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-
-.btn-secondary {
-  background-color: #ff3366;
-  padding: 0.8rem 2rem;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  border-radius: 30px;
-  margin-top: 2rem;
-  display: inline-block;
-}
-
-.site-footer {
-  background: #333;
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
+#send-btn:hover {
+  background-color: #5a4ea6;
 }
