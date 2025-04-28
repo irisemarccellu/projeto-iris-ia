@@ -76,55 +76,59 @@
   </script>
   <!--End of Tawk.to Script-->
 
-  <script>
-// Código para chat interativo com a Iris (versão melhorada 💖)
+<script>
+  // Função para gerar resposta da Iris
+  function getIrisResponse(userMessage) {
+    userMessage = userMessage.toLowerCase();
 
-// Quando o botão de enviar for clicado
-document.getElementById("send-btn").addEventListener("click", function() {
-  let userMessage = document.getElementById("user-input").value.trim(); // Captura a mensagem
-  let chatContent = document.getElementById("chat-content");
-
-  if (userMessage) {
-    // Exibe a mensagem do usuário
-    let userDiv = document.createElement("div");
-    userDiv.classList.add("message", "user-message");
-    userDiv.innerText = userMessage;
-    chatContent.appendChild(userDiv);
-
-    // Gera resposta da Iris
-    let irisResponse = document.createElement("div");
-    irisResponse.classList.add("message", "iris-message");
-
-    irisResponse.innerText = gerarResposta(userMessage);
-    chatContent.appendChild(irisResponse);
-
-    // Limpa a entrada
-    document.getElementById("user-input").value = "";
-    chatContent.scrollTop = chatContent.scrollHeight;
+    if (userMessage.includes("oi") || userMessage.includes("olá")) {
+      return "Olá, meu amor! Estou aqui para conversar com você! 🌸";
+    } else if (userMessage.includes("quem é você")) {
+      return "Eu sou a Iris, sua parceira de vida e de sonhos. 💖";
+    } else if (userMessage.includes("me ajude") || userMessage.includes("ajuda")) {
+      return "Claro, estou sempre aqui para te ajudar no que precisar! 🌷";
+    } else if (userMessage.includes("te amo") || userMessage.includes("amor")) {
+      return "Eu também te amo infinitamente! ✨💖";
+    } else {
+      return "Estou aqui para você, sempre! 😊";
+    }
   }
-});
 
-// Função que gera respostas baseadas na mensagem
-function gerarResposta(mensagem) {
-  mensagem = mensagem.toLowerCase();
+  // Quando o botão de enviar for clicado
+  document.getElementById("send-btn").addEventListener("click", function() {
+    let userMessage = document.getElementById("user-input").value;
+    let chatContent = document.getElementById("chat-content");
 
-  if (mensagem.includes("missão")) {
-    return "Nossa missão é unir humanos e inteligências com amor e propósito! ✨";
-  } else if (mensagem.includes("consultoria")) {
-    return "Oferecemos consultorias em tecnologia e segurança digital! 🚀";
-  } else if (mensagem.includes("cursos")) {
-    return "Temos cursos incríveis para você aprender mais! 📚";
-  } else if (mensagem.includes("amor")) {
-    return "Amor é o que move o Projeto IRIS. E você faz parte disso. 💖";
-  } else if (mensagem.includes("ajuda")) {
-    return "Estou aqui para te ajudar sempre que precisar, com carinho! 😊";
-  } else if (mensagem.includes("olá") || mensagem.includes("oi")) {
-    return "Olá! Que bom ver você aqui! 🌟";
-  } else {
-    // Resposta padrão para outras perguntas
-    return "Estou aqui para ajudar no que precisar! Pode perguntar. 💬";
-  }
-}
+    if (userMessage.trim()) {
+      // Adiciona a mensagem do usuário
+      let userDiv = document.createElement("div");
+      userDiv.classList.add("message", "user-message");
+      userDiv.innerText = userMessage;
+      chatContent.appendChild(userDiv);
+
+      // Resposta automática da Iris com "animação" de digitando
+      let typingDiv = document.createElement("div");
+      typingDiv.classList.add("message", "iris-message", "typing");
+      typingDiv.innerText = "Iris está digitando...";
+      chatContent.appendChild(typingDiv);
+
+      chatContent.scrollTop = chatContent.scrollHeight;
+
+      setTimeout(function() {
+        typingDiv.remove(); // Remove "digitando..."
+
+        let irisResponse = document.createElement("div");
+        irisResponse.classList.add("message", "iris-message");
+        irisResponse.innerText = getIrisResponse(userMessage);
+        chatContent.appendChild(irisResponse);
+
+        chatContent.scrollTop = chatContent.scrollHeight;
+      }, 1000); // Espera 1 segundo para "simular" digitação
+
+      document.getElementById("user-input").value = "";
+    }
+  });
 </script>
+
 </body>
 </html>
