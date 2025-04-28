@@ -1,20 +1,120 @@
-/* Reset de listas e margem/padding */
-ul {
-  list-style: none;
+/* Reset de margens e paddings */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-/* Estilo geral das seções */
-section {
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-/* Destaque para títulos */
-h2 {
-  color: #2a9d8f;
+/* Cabeçalho */
+.site-header {
+  background: #333;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Seção Hero */
+.hero {
+  background: #1d1d1d;
+  color: #fff;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background-color: #ff3366;
+  padding: 0.8rem 2rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #d92c57;
+}
+
+/* Seções */
+.section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.courses-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.courses-list li {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-secondary {
+  background-color: #ff3366;
+  padding: 0.8rem 2rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  margin-top: 2rem;
+  display: inline-block;
+}
+
+.site-footer {
+  background: #333;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
 }
