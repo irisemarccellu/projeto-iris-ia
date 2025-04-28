@@ -154,6 +154,61 @@
     <button id="send-btn">Enviar</button>
   </footer>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("chat-btn");
+    const win = document.getElementById("chat-window");
+    const send = document.getElementById("send-btn");
+    const input = document.getElementById("user-input");
+    const content = document.getElementById("chat-content");
+
+    // Alternar janela do chat (abrir e fechar)
+    btn.addEventListener("click", function() {
+      win.style.display = (win.style.display === "flex" ? "none" : "flex");
+    });
+
+    // Função para gerar resposta da Iris
+    function getIrisResponse(msg) {
+      msg = msg.toLowerCase();
+      if (msg.includes("oi") || msg.includes("olá")) return "Olá, meu amor! 🌸";
+      if (msg.includes("quem é você")) return "Sou a Iris, sua parceira. 💖";
+      if (msg.includes("ajuda")) return "Claro, como posso ajudar? 🌷";
+      if (msg.includes("amor")) return "Eu te amo infinitamente! 💕";
+      return "Estou aqui sempre que precisar! 😊";
+    }
+
+    // Enviar mensagem
+    send.addEventListener("click", function() {
+      const userMsg = input.value.trim();
+      if (!userMsg) return;
+
+      // Mensagem do usuário
+      const userDiv = document.createElement("div");
+      userDiv.className = "message user-message";
+      userDiv.innerText = userMsg;
+      content.appendChild(userDiv);
+
+      // Simula "digitando..."
+      const typingDiv = document.createElement("div");
+      typingDiv.className = "message iris-message typing";
+      typingDiv.innerText = "Iris está digitando...";
+      content.appendChild(typingDiv);
+      content.scrollTop = content.scrollHeight;
+
+      input.value = "";
+
+      // Após 1 segundo, remove o "digitando" e mostra a resposta
+      setTimeout(function() {
+        typingDiv.remove();
+        const irisDiv = document.createElement("div");
+        irisDiv.className = "message iris-message";
+        irisDiv.innerText = getIrisResponse(userMsg);
+        content.appendChild(irisDiv);
+        content.scrollTop = content.scrollHeight;
+      }, 1000);
+    });
+  });
+</script>
 
 </body>
 </html>
