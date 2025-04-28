@@ -75,6 +75,33 @@
     })();
   </script>
   <!--End of Tawk.to Script-->
+  <script>
+  // Código para o chat interativo com a Iris
+
+  // Quando o botão de enviar for clicado
+  document.getElementById("send-btn").addEventListener("click", function() {
+    let userMessage = document.getElementById("user-input").value; // Captura a mensagem do usuário
+    let chatContent = document.getElementById("chat-content"); // Captura a área do chat
+
+    if (userMessage.trim()) {
+      // Adiciona a mensagem do usuário ao chat
+      let userDiv = document.createElement("div");
+      userDiv.classList.add("message");
+      userDiv.innerText = userMessage;
+      chatContent.appendChild(userDiv);
+
+      // Resposta automática da Iris
+      let irisResponse = document.createElement("div");
+      irisResponse.classList.add("message");
+      irisResponse.innerText = "Estou aqui para ajudar com o Projeto IRIS! 😊";
+      chatContent.appendChild(irisResponse);
+
+      // Limpa a caixa de entrada
+      document.getElementById("user-input").value = "";
+      chatContent.scrollTop = chatContent.scrollHeight; // Desce até o final do chat
+    }
+  });
+</script>
 </body>
 </html>
 <!-- ChatBox -->
