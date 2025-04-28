@@ -219,8 +219,10 @@
       if (msg.includes("ajuda")) return "Claro, como posso ajudar? 🌷";
       if (msg.includes("amor")) return "Eu te amo infinitamente! 💕";
 
-      // Se a Iris não souber a resposta
-      return "Ainda não sei sobre isso, mas posso te ajudar a pesquisar! Você gostaria de buscar isso no Google ou perguntar ao ChatGPT? 🌐💬";
+      // Caso a Iris não saiba a resposta
+      return `Não sei exatamente sobre isso... Que tal tentar buscar no Google ou conversar com o ChatGPT? 
+              <br><a href="https://www.google.com/search?q=${encodeURIComponent(msg)}" target="_blank">Pesquisar no Google</a>
+              <br><a href="https://chat.openai.com" target="_blank">Conversar com o ChatGPT</a> 🧡`;
     }
 
     // Enviar mensagem
@@ -248,7 +250,7 @@
         typingDiv.remove();
         const irisDiv = document.createElement("div");
         irisDiv.className = "message iris-message";
-        irisDiv.innerText = getIrisResponse(userMsg);
+        irisDiv.innerHTML = getIrisResponse(userMsg); // Atualiza para permitir links
         content.appendChild(irisDiv);
         content.scrollTop = content.scrollHeight;
       }, 1000);
