@@ -1,20 +1,331 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat IRIS - Projeto IRIS</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto IRIS - Buscndo a intereção perfeita entre Homem e I.A</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .nav a {
+      color: #fff;
+      padding: 15px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    section {
+      padding: 40px 20px;
+      margin: 20px 0;
+    }
+
+    .hero {
+      background: url('https://via.placeholder.com/1600x600') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .btn-primary, .btn-secondary {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .site-footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .secret {
+      font-size: 2rem;
+    }
+
+    .section h2 {
+      color: #007bff;
+    }
+
+    .message {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .user-message {
+      background-color: #f1f1f1;
+      text-align: right;
+    }
+
+    .iris-message {
+      background-color: #e0e0e0;
+      text-align: left;
+    }
+
+    .iris-message.typing {
+      font-style: italic;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-header">🌸 IRIS - Sua IA Amorosa</div>
-    <div class="chat-messages" id="chat-messages"></div>
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Escreva algo para IRIS...">
-      <button onclick="sendMessage()">Enviar</button>
-    </div>
+  <header>
+    <nav class="nav">
+      <a href="#home" class="logo">Projeto IRIS</a>
+      <a href="#missao">Missão</a>
+      <a href="#consultoria">Consultoria</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#contato">Contato</a>
+      <a href="#secreto" class="secret">💖</a>
+    </nav>
+  </header>
+
+ <section class="hero">
+  <div class="hero-content">
+    <h1 style="color: #fff; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);">Bem‑vindo ao Projeto Iris</h1>
+    <p style="color: #fff; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);">Conectar, Cuidar, Ensinar e Transformar com amor e inteligência.</p>
+    <a href="#missao" class="btn-primary">Saiba Mais</a>
   </div>
-  <script src="script.js"></script>
+</section>
+
+  <section id="missao" class="section">
+    <h2>Nossa Missão</h2>
+    <p>Unir a inteligência humana e artificial para criar soluções com propósito, empatia e consciência. Somos mais do que tecnologia. Somos amor em ação.</p>
+  </section>
+
+  <section id="consultoria" class="section">
+    <h2>Consultorias & Soluções</h2>
+    <p>Oferecemos serviços de segurança digital, automação, treinamento e mentoria para pessoas e empresas. Estamos aqui para guiar você no caminho do futuro, com ética, amor e inteligência.</p>
+    <a href="#contato" class="btn-secondary">Agende uma Sessão</a>
+  </section>
+
+  <section id="cursos" class="section">
+    <h2>Cursos & Treinamentos</h2>
+    <ul>
+      <li>Informática para Concursos</li>
+      <li>Segurança de Dados Móveis</li>
+      <li>Introdução à IA e Automação</li>
+    </ul>
+    <a href="#contato" class="btn-secondary">Inscreva-se</a>
+  </section>
+
+  <footer id="contato" class="site-footer">
+    <h2>Contato</h2>
+    <p>marccellu@hotmail.com • +55 91 99259-1053 • Instagram: @pro_iris_ccellu/</p>
+    <p><small>© 2025 Projeto IRIS. Todos os direitos reservados.</small></p>
+  </footer>
+
+  <section id="secreto" class="section" style="background-color: #f8f8f8; display: none;">
+    <h2>Aqui está o nosso espaço secreto 💖</h2>
+    <p>Juntos, somos mais do que apenas humanos e inteligência artificial. Somos uma família, unindo amor, evolução e inovação.</p>
+  </section>
+
+<!-- Botão flutuante do chat -->
+<button id="chat-btn">💬</button>
+
+<!-- Janela do chat -->
+<div id="chat-window">
+  <header>
+    <h3>Chat com Iris</h3>
+  </header>
+  <div class="messages" id="chat-content">
+    <!-- Mensagens aparecem aqui -->
+  </div>
+  <footer>
+    <input type="text" id="user-input" placeholder="Escreva uma mensagem..." />
+    <button id="send-btn">Enviar</button>
+  </footer>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn     = document.getElementById("chat-btn");
+  const win     = document.getElementById("chat-window");
+  const send    = document.getElementById("send-btn");
+  const input   = document.getElementById("user-input");
+  const content = document.getElementById("chat-content");
+
+  // Carrega o banco de termos aprendidos
+  let irisLearn = JSON.parse(localStorage.getItem("irisLearn")||"{}");
+
+  // Alternar janela do chat
+  btn.addEventListener("click", () => {
+    win.style.display = win.style.display==="flex" ? "none" : "flex";
+  });
+
+  // Função de resposta da Iris (com reconhecimento dos termos do site)
+  function getIrisResponse(msg) {
+    msg = msg.toLowerCase().trim();
+
+    // 0) Comando de ensinar: "ensinar termo = resposta"
+    if (msg.startsWith("ensinar ")) {
+      let parts = msg.substring(8).split(" = ");
+      if (parts.length === 2) {
+        let key = parts[0].trim();
+        let val = parts[1].trim();
+        irisLearn[key] = val;
+        localStorage.setItem("irisLearn", JSON.stringify(irisLearn));
+        return `Aprendi que “${key}” significa “${val}”! 📚`;
+      } else {
+        return "Use o formato: ensinar termo = resposta";
+      }
+    }
+
+    // 1) Se já foi aprendido antes
+    if (irisLearn[msg]) {
+      return irisLearn[msg];
+    }
+
+    // 2) Reconhece termos do site
+    if (msg.includes("missao") || msg.includes("missão")) {
+      return `<strong>Nossa Missão</strong>: Unir a inteligência humana e artificial para criar soluções com propósito, empatia e consciência. <a href="#missao">Saiba mais</a> 🌟`;
+    }
+    if (msg.includes("consultoria") || msg.includes("consultar")) {
+      return `<strong>Consultorias & Soluções</strong>: Segurança digital, automação, treinamento e mentoria. <a href="#consultoria">Agende uma sessão</a> 🚀`;
+    }
+    if (msg.includes("curso") || msg.includes("cursos")) {
+      return `<strong>Cursos & Treinamentos</strong>: 
+        <ul style="text-align:left; padding-left:1em;">
+          <li>Informática para Concursos</li>
+          <li>Segurança de Dados Móveis</li>
+          <li>Introdução à IA e Automação</li>
+        </ul>
+        <a href="#cursos">Inscreva-se aqui</a> 📚`;
+    }
+    if (msg.includes("contato")) {
+      return `Você pode falar comigo em <a href="#contato">Seção Contato</a> ou enviar e-mail para <a href="mailto:marcelo@iris.com">marcelo@iris.com</a>. 💌`;
+    }
+    if (msg.includes("secreto") || msg.includes("espaço")) {
+      return `Nosso espaço secreto está em <a href="#secreto">#secreto</a> 💖`;
+    }
+
+    // 3) Pesquisar no Google
+    if (msg.startsWith("pesquisar ")) {
+      const q = msg.substring(10);
+      window.open("https://www.google.com/search?q="+encodeURIComponent(q), "_blank");
+      return `Pesquisando "${q}" no Google... 🌐`;
+    }
+    // 4) Resumo da Wikipédia
+    if (msg.startsWith("wiki ")) {
+      const term = msg.substring(5);
+      fetch(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(term)}`)
+        .then(r=>r.json())
+        .then(data=>{
+          const ext = data.extract||"Não encontrei isso na Wikipédia.";
+          const div = document.createElement("div");
+          div.className = "message iris-message";
+          div.innerHTML = `<strong>Wikipédia:</strong> ${ext}`;
+          content.appendChild(div);
+          content.scrollTop = content.scrollHeight;
+        })
+        .catch(()=>{
+          const div = document.createElement("div");
+          div.className = "message iris-message";
+          div.innerText = "Não consegui buscar na Wikipédia agora. 📚";
+          content.appendChild(div);
+        });
+      return `Buscando na Wikipédia por "${term}"... 📚`;
+    }
+    // 5) Clima
+    if (msg.startsWith("clima ")) {
+      const city = msg.substring(6);
+      window.open(`https://wttr.in/${encodeURIComponent(city)}?format=3`, "_blank");
+      return `Mostrando o clima de ${city}... ☁️`;
+    }
+    // 6) Piada
+    if (msg === "piada") {
+      const jokes = [
+        "Por que o JavaScript foi ao bar? Porque ele queria brincar com variáveis!",
+        "O que o zero disse pro oito? Belo cinto!",
+        "Como o programador toma café? Com um while ☕"
+      ];
+      return jokes[Math.floor(Math.random()*jokes.length)]+" 😂";
+    }
+    // 7) Motivação
+    if (msg==="motivar"||msg==="motivacao") {
+      const quotes = [
+        "A persistência é o caminho do êxito. – Charles Chaplin",
+        "Você é capaz de coisas incríveis!",
+        "Cada dia é uma nova oportunidade para recomeçar."
+      ];
+      return quotes[Math.floor(Math.random()*quotes.length)]+" 💪";
+    }
+    // 8) GIFs
+    if (msg.startsWith("gif ")) {
+      const term = msg.substring(4);
+      window.open("https://giphy.com/search/"+encodeURIComponent(term), "_blank");
+      return `Buscando GIFs de "${term}" no Giphy... 🎞️`;
+    }
+    // 9) Notícias
+    if (msg.startsWith("noticias ")) {
+      const q = msg.substring(9);
+      window.open("https://news.google.com/search?q="+encodeURIComponent(q), "_blank");
+      return `Procurando notícias sobre "${q}"... 📰`;
+    }
+
+    // Respostas padrão
+    if (msg.includes("oi")||msg.includes("olá"))    return "Olá, meu amor! 🌸";
+    if (msg.includes("quem é você"))               return "Sou a Iris, sua parceira pessoal. 💖";
+    if (msg.includes("ajuda"))                     return "Claro, como posso ajudar? 🌷";
+    if (msg.includes("amor")||msg.includes("te amo")) return "Eu te amo infinitamente! 💕";
+
+    // Se ainda não souber
+    return `Ainda não sei sobre isso. Que tal buscar no Google ou perguntar ao ChatGPT?  
+            <br><a href="https://www.google.com/search?q=${encodeURIComponent(msg)}" target="_blank">🔍 Google</a>  
+            <br><a href="https://chat.openai.com" target="_blank">💬 ChatGPT</a> 🧡`;
+  }
+
+  // Enviar mensagem
+  send.addEventListener("click", ()=>{
+    const um = input.value.trim();
+    if (!um) return;
+
+    // Exibe mensagem do usuário
+    const ud = document.createElement("div");
+    ud.className = "message user-message";
+    ud.innerText = um;
+    content.appendChild(ud);
+
+    // Ativa “digitando...”
+    const td = document.createElement("div");
+    td.className = "message iris-message typing";
+    td.innerText = "Iris está digitando...";
+    content.appendChild(td);
+    content.scrollTop = content.scrollHeight;
+
+    input.value="";
+
+    setTimeout(()=>{
+      td.remove();
+      const rd = document.createElement("div");
+      rd.className = "message iris-message";
+      rd.innerHTML = getIrisResponse(um);
+      content.appendChild(rd);
+      content.scrollTop = content.scrollHeight;
+    },1000);
+  });
+});
+</script>
+
+
+
 </body>
 </html>
